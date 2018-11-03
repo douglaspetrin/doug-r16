@@ -4,47 +4,39 @@ import Person from './Person/Person';
 
 
 class App extends Component {
-  state = {
-    persons: [
-      { name: 'Doug', age: 28 },
-      { name: 'Carol', age: 32 },
-      { name: 'Laise', age: 26 }
-    ],
-    showPersons: false
-
+    state = {
+      persons: [
+        { name: 'Doug', age: 28 },
+        { name: 'Carol', age: 32 },
+        { name: 'Laise', age: 26 }
+      ],
+      showPersons: false
   }
   
   switchNameHandler = (newName) => {
-  //console.log('It was clicked!');
-
-      this.setState( {
+       this.setState( {
           persons: [
             { name: newName, age: 15},
             { name: newName, age: 12 },
             { name: 'Laise', age: 26 }
           ]
       })
-
   }
 
-nameChangeHandler = (event) => {
-  this.setState({
-    persons: [
-      {name: 'Doug', age: 28},
-      { name: event.target.value, age: 32 },
-      { name: 'Laise', age: 26 }
-    ]
-  })
+
+deletePersonHandler = (personIndex) => {
+  const persons = this.state.persons;
+  persons.splice(personIndex, 1);
+  this.setState({persons: persons});
 }
 
+
 togglePersonsHandler = () => {
-  
-  const doesShow = this.state.showPersons;
+    const doesShow = this.state.showPersons;
   this.setState({
       showPersons: !doesShow
   });
 }
-
 
   
   render() {
@@ -59,26 +51,23 @@ togglePersonsHandler = () => {
     };
 
 
-    let persons = null;
+    let persons = null; //starts with it
 
-    if(this.state.showPersons) {
+    if(this.state.showPersons) { // if it's true show me persons
       persons = (
         <div>
-        <Person name={this.state.persons[0].name}
-        age={this.state.persons[0].age}> Aqui ta entrando o props.children e nos outros não</Person>
-        
-        <Person name={this.state.persons[1].name}
-        click={this.switchNameHandler.bind(this, 'uuuuu')}
-          age={this.state.persons[1].age}/>
-        
-        <Person name={this.state.persons[2].name}
-        changed={this.nameChangeHandler}
-          age={this.state.persons[2].age}/>
-          <hr />
+          {this.state.persons.map((person, index) => {
+            return (
+            <Person 
+            click={() => this.deletePersonHandler(index)} 
+            name={person.name}
+            age={person.age}/> //rendering the list of persons
+             
+            )
+          })}
         </div>
       );
     }
-
 
 
     return (
@@ -110,3 +99,32 @@ and the [0] is the index,
 state is a property of the Class.
 
 */ 
+
+/*
+<Person name={this.state.persons[0].name}
+age={this.state.persons[0].age}> Aqui ta entrando o props.children e nos outros não</Person>
+
+<Person name={this.state.persons[1].name}
+click={this.switchNameHandler.bind(this, 'uuuuu')}
+  age={this.state.persons[1].age}/>
+
+<Person name={this.state.persons[2].name}
+changed={this.nameChangeHandler}
+  age={this.state.persons[2].age}/>
+  <hr />
+
+  */
+
+  /* 
+  
+  nameChangeHandler = (event) => {
+  this.setState({
+    persons: [
+      {name: 'Doug', age: 28},
+      { name: event.target.value, age: 32 },
+      { name: 'Laise', age: 26 }
+    ]
+  })
+}
+  
+  */
