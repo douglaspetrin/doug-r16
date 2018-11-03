@@ -59,6 +59,28 @@ togglePersonsHandler = () => {
     };
 
 
+    let persons = null;
+
+    if(this.state.showPersons) {
+      persons = (
+        <div>
+        <Person name={this.state.persons[0].name}
+        age={this.state.persons[0].age}> Aqui ta entrando o props.children e nos outros não</Person>
+        
+        <Person name={this.state.persons[1].name}
+        click={this.switchNameHandler.bind(this, 'uuuuu')}
+          age={this.state.persons[1].age}/>
+        
+        <Person name={this.state.persons[2].name}
+        changed={this.nameChangeHandler}
+          age={this.state.persons[2].age}/>
+          <hr />
+        </div>
+      );
+    }
+
+
+
     return (
       <div className="App">
         <h1>Hello</h1>
@@ -68,25 +90,8 @@ togglePersonsHandler = () => {
         onClick={this.switchNameHandler.bind(this, 'opa')}>Click me</button>
 
         <button style={style} onClick={this.togglePersonsHandler}> Click to toggle</button>
-        
-        {this.state.showPersons === true ? 
-        
-        <div>
-          
-          <Person name={this.state.persons[0].name}
-          age={this.state.persons[0].age}> Aqui ta entrando o props.children e nos outros não</Person>
-          
-          <Person name={this.state.persons[1].name}
-          click={this.switchNameHandler.bind(this, 'uuuuu')}
-            age={this.state.persons[1].age}/>
-          
-          <Person name={this.state.persons[2].name}
-          changed={this.nameChangeHandler}
-            age={this.state.persons[2].age}/>
-            <hr />
 
-          </div> : null
-        }
+        {persons}
       
       </div>
     );
