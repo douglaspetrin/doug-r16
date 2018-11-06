@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Radium from 'radium';
+import Radium, { StyleRoot } from 'radium';
 import Person from './Person/Person';
 
 
@@ -69,7 +69,10 @@ togglePersonsHandler = () => {
       padding: '8px',
       cursor: 'pointer',
       borderRadius: '5px',
-      
+      ':hover': {
+        backgroundColor: 'lightgreen',
+        color: 'black'
+      }
     };
 
 
@@ -94,6 +97,10 @@ togglePersonsHandler = () => {
       );
       style.backgroundColor = 'blue';
       style.color = 'white';
+      style[':hover'] = {
+        backgroundColor: 'lightred',
+        color: 'black'
+      };
       
     }
 
@@ -110,25 +117,27 @@ togglePersonsHandler = () => {
     }
 
     return (
+      <StyleRoot>
       <div className="App">
         <h1>Hello</h1>
         <p className={classes.join(' ')}>This is really working!</p> 
     
       {/* join brings the if classes: red and bold */}
 
-        <button style={style}
+        <button style={style} key='algo'
         onClick={this.switchNameHandler.bind(this, 'opa')}>Click me</button>&nbsp;&nbsp;
 
-        <button style={style} onClick={this.togglePersonsHandler}> Click to toggle</button>
+        <button style={style} key='outro ag' onClick={this.togglePersonsHandler}> Click to toggle</button>
 
         {persons}
       
       </div>
+      </StyleRoot>
     );
   }
 }
 
-export default App;
+export default Radium(App);
 
 
 // {this.state.persons[0].age} 
