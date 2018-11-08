@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import Radium, { StyleRoot } from 'radium';
 import Person from './Person/Person';
+import classes from './Button.module.css';
 
 
 class App extends Component {
@@ -96,31 +96,26 @@ togglePersonsHandler = () => {
         </div>
       );
       style.backgroundColor = 'blue';
-      style.color = 'white';
-      style[':hover'] = {
-        backgroundColor: 'lightred',
-        color: 'black'
-      };
-      
+      style.color = 'white';      
     }
 
     // let classes = ['red', 'bold'].join(' ') // equals to red bold
 
-    const classes = [];
+    const assignedClasses = [];
 
     if (this.state.persons.length <= 2 ) {
-      classes.push('red'); // turns it red
+      assignedClasses.push( classes.red ); // turns it red an it is using module classes
     }
 
     if (this.state.persons.length<= 1) {
-      classes.push('bold');
+      assignedClasses.push( classes.bold );
     }
 
     return (
-      <StyleRoot>
+      
       <div className="App">
         <h1>Hello</h1>
-        <p className={classes.join(' ')}>This is really working!</p> 
+        <p className={assignedClasses.join(' ')}>This is really working!</p> 
     
       {/* join brings the if classes: red and bold */}
 
@@ -132,12 +127,12 @@ togglePersonsHandler = () => {
         {persons}
       
       </div>
-      </StyleRoot>
+     
     );
   }
 }
 
-export default Radium(App);
+export default App;
 
 
 // {this.state.persons[0].age} 
