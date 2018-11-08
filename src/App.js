@@ -62,19 +62,6 @@ togglePersonsHandler = () => {
 
   
   render() {
-    const style = {
-      backgroundColor: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer',
-      borderRadius: '5px',
-      ':hover': {
-        backgroundColor: 'lightgreen',
-        color: 'black'
-      }
-    };
-
 
     let persons = null; //starts with it
 
@@ -95,8 +82,7 @@ togglePersonsHandler = () => {
           })}
         </div>
       );
-      style.backgroundColor = 'blue';
-      style.color = 'white';      
+          
     }
 
     // let classes = ['red', 'bold'].join(' ') // equals to red bold
@@ -119,10 +105,13 @@ togglePersonsHandler = () => {
     
       {/* join brings the if classes: red and bold */}
 
-        <button style={style} key='algo'
+        <button 
+        style={style} key='algo'
         onClick={this.switchNameHandler.bind(this, 'opa')}>Click me</button>&nbsp;&nbsp;
 
-        <button style={style} key='outro ag' onClick={this.togglePersonsHandler}> Click to toggle</button>
+        <button 
+        key='outro ag' 
+        onClick={this.togglePersonsHandler}> Click to toggle</button>
 
         {persons}
       
