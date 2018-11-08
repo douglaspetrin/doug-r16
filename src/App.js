@@ -113,7 +113,7 @@ togglePersonsHandler = () => {
 
     return (
       
-      <div className="App">
+      <div className={classes.App}>
         <h1>Hello</h1>
         <p className={assignedClasses.join(' ')}>This is really working!</p> 
     
