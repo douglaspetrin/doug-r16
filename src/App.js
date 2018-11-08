@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
-import classes from './Button.module.css';
+import classes from './App.module.css';
 
 
 class App extends Component {
@@ -38,6 +38,8 @@ nameChangeHandler = (event, id) => {
 
     person.name = event.target.value;
 
+    //person.name = event.input.value;
+
     const persons = [...this.state.persons];
     persons[personIndex] = person;
 
@@ -64,6 +66,7 @@ togglePersonsHandler = () => {
   render() {
 
     let persons = null; //starts with it
+    let btnClasses = ' '; //starts like null
 
     if(this.state.showPersons) { // if it's true show me persons
       persons = (
@@ -82,7 +85,7 @@ togglePersonsHandler = () => {
           })}
         </div>
       );
-          
+      btnClasses = classes.Red;    
     }
 
     // let classes = ['red', 'bold'].join(' ') // equals to red bold
@@ -105,11 +108,13 @@ togglePersonsHandler = () => {
     
       {/* join brings the if classes: red and bold */}
 
-        <button 
-        style={style} key='algo'
+        <button
+        className={btnClasses} 
+        key='algo'
         onClick={this.switchNameHandler.bind(this, 'opa')}>Click me</button>&nbsp;&nbsp;
 
         <button 
+        className={btnClasses} 
         key='outro ag' 
         onClick={this.togglePersonsHandler}> Click to toggle</button>
 
