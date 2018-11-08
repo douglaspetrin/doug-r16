@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
 import classes from './App.module.css';
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 
 
 class App extends Component {
@@ -73,14 +74,14 @@ togglePersonsHandler = () => {
         <div>
           {this.state.persons.map((person, index) => {
             return (
-            <Person 
-            click={() => this.deletePersonHandler(index)} 
-            name={person.name}
-            age={person.age}
-            key={person.id}
-            changed={(event) => this.nameChangeHandler(event, person.id)}
-            /> //rendering the list of persons
-             
+            <ErrorBoundary key={person.id}> {/* the key always need to be in the outer tag when using the map()*/}
+               <Person 
+                  click={() => this.deletePersonHandler(index)} 
+                  name={person.name}
+                  age={person.age}
+                  changed={(event) => this.nameChangeHandler(event, person.id)}
+                  /> {/*rendering the list of persons*/}
+             </ErrorBoundary>
             )
           })}
         </div>
