@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
-import Person from '../components/Persons/Person/Person';
+//import Person from '../components/Persons/Person/Person';
 import classes from './App.module.css';
-import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
+//import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
+import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
 
 
 class App extends Component {
@@ -67,59 +69,28 @@ togglePersonsHandler = () => {
   render() {
 
     let persons = null; //starts with it
-    let btnClasses = ' '; //starts like null
+    
 
     if(this.state.showPersons) { // if it's true show me persons
-      persons = (
-        <div>
-          {this.state.persons.map((person, index) => {
-            return (
-            <ErrorBoundary key={person.id}> {/* the key always need to be in the outer tag when using the map()*/}
-               <Person 
-                  click={() => this.deletePersonHandler(index)} 
-                  name={person.name}
-                  age={person.age}
-                  changed={(event) => this.nameChangeHandler(event, person.id)}
-                  /> {/*rendering the list of persons*/}
-             </ErrorBoundary>
-            )
-          })}
-        </div>
-      );
-      btnClasses = classes.Red;    
+      persons =  <Persons 
+            persons={this.state.persons} //they are going to the Persons.js
+            clicked={this.deletePersonHandler}
+            changed={this.nameChangeHandler}/>;
     }
 
     // let classes = ['red', 'bold'].join(' ') // equals to red bold
 
-    const assignedClasses = [];
-
-    if (this.state.persons.length <= 2 ) {
-      assignedClasses.push( classes.red ); // turns it red an it is using module classes
-    }
-
-    if (this.state.persons.length<= 1) {
-      assignedClasses.push( classes.bold );
-    }
 
     return (
       
       <div className={classes.App}>
-        <h1>Hello</h1>
-        <p className={assignedClasses.join(' ')}>This is really working!</p> 
-    
-      {/* join brings the if classes: red and bold */}
 
-        <button
-        className={btnClasses} 
-        key='algo'
-        onClick={this.switchNameHandler.bind(this, 'opa')}>Click me</button>&nbsp;&nbsp;
-
-        <button 
-        className={btnClasses} 
-        key='outro ag' 
-        onClick={this.togglePersonsHandler}> Click to toggle</button>
-
-        {persons}
+        <Cockpit
+          showPersons={this.state.showPersons}
+          persons={this.state.persons}
+          clicked={this.togglePersonsHandler}
+        />
+        {persons} 
       
       </div>
      
@@ -130,33 +101,66 @@ togglePersonsHandler = () => {
 export default App;
 
 
-// {this.state.persons[0].age} 
+// // {this.state.persons[0].age} 
 
-/* 
+// /* 
 
-this refers to the Class, persons is the array which has a list of objects {},
-and the [0] is the index,
-state is a property of the Class.
+// this refers to the Class, persons is the array which has a list of objects {},
+// and the [0] is the index,
+// state is a property of the Class.
 
-*/ 
+// */ 
 
-/*
-<Person name={this.state.persons[0].name}
-age={this.state.persons[0].age}> Aqui ta entrando o props.children e nos outros não</Person>
+// /*
+// <Person name={this.state.persons[0].name}
+// age={this.state.persons[0].age}> Aqui ta entrando o props.children e nos outros não</Person>
 
-<Person name={this.state.persons[1].name}
-click={this.switchNameHandler.bind(this, 'uuuuu')}
-  age={this.state.persons[1].age}/>
+// <Person name={this.state.persons[1].name}
+// click={this.switchNameHandler.bind(this, 'uuuuu')}
+//   age={this.state.persons[1].age}/>
 
-<Person name={this.state.persons[2].name}
-changed={this.nameChangeHandler}
-  age={this.state.persons[2].age}/>
-  <hr />
+// <Person name={this.state.persons[2].name}
+// changed={this.nameChangeHandler}
+//   age={this.state.persons[2].age}/>
+//   <hr />
 
-  */
+//   */
 
-  /* 
+// {/* 
   
 
-  
-  */
+//       {this.state.persons.map((person, index) => {
+//         return (
+//         <ErrorBoundary key={person.id}> {/* the key always need to be in the outer tag when using the map()*/}
+//    {/*   
+//         <Person 
+//         click={() => this.deletePersonHandler(index)} 
+//         name={person.name}
+//         age={person.age}
+//         changed={(event) => this.nameChangeHandler(event, person.id)}
+//         /> {/*rendering the list of persons*/}
+//     {/*   </ErrorBoundary> */}
+//   {/*   )
+// })} */}
+
+
+// {/*
+
+//         <h1>Hello</h1>
+//         <p className={assignedClasses.join(' ')}>This is really working!</p> 
+    
+//       {/* join brings the if classes: red and bold */}
+// {/*
+//       <button
+//       className={btnClasses} 
+//       key='algo'
+//       onClick={this.switchNameHandler.bind(this, 'opa')}>Click me</button>&nbsp;&nbsp;
+
+//       <button 
+//       className={btnClasses} 
+//       key='outro ag' 
+//       onClick={this.togglePersonsHandler}> Click to toggle</button>
+
+
+
+// */}

@@ -1,8 +1,4 @@
-.App {
-    text-align: center;
-  }
-  
-  /* .red {
+.red {
     color: red;
   }
   
@@ -10,7 +6,7 @@
     font-weight: bold;
   }
 
-  .App button {
+  .Cockpit button {
     background-color: azure;
     padding: 16px;
     border: 1px solid blue;
@@ -21,7 +17,7 @@
 
   }
 
-  .App button:hover {
+  .Cockpit button:hover {
     background-color: blue;
     padding: 16px;
     border: 1px solid blue;
@@ -32,7 +28,7 @@
 
   }
   
-  .App button.Red {
+  .Cockpit button.Red {
     background-color: red;
     padding: 16px;
     border: 1px solid salmon;
@@ -43,7 +39,7 @@
 
   }
 
-  .App button.Red:hover {
+  .Cockpit button.Red:hover {
     background-color: salmon;
     padding: 16px;
     border: 1px solid salmon;
@@ -52,4 +48,4 @@
     color: #fff;
     cursor: pointer;
 
-  } */
+  }
