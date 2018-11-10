@@ -1,25 +1,26 @@
 import React, { Component } from 'react';
 import './Person.css';
 import classes from './Person.module.css';
+import withClass from '../../../hoc/withClass';
 
 
 class Person extends Component {
     render() {
             return (
                 
-                <div className={classes.Person}>
+                <React.Fragment>
         
                     <p onClick={this.props.click}>I'm {this.props.name} and I am {this.props.age}</p>
                     <p>{this.props.children}</p>
                     <input type="text" onChange={this.props.changed} placeholder={this.props.name}></input>
         
-                </div>
+                    </React.Fragment>
             )
         }
     }
 
 
-export default Person;
+export default withClass(Person, classes.Person);
 
 // const person = (props) => {
 

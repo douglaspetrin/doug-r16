@@ -5,6 +5,7 @@ import classes from './App.module.css';
 //import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
+import withClass from '../hoc/withClass';
 
 
 class App extends Component {
@@ -83,8 +84,8 @@ togglePersonsHandler = () => {
 
     return (
       
-      <div className={classes.App}>
-
+      
+      <React.Fragment>
         <Cockpit
           showPersons={this.state.showPersons}
           persons={this.state.persons}
@@ -92,13 +93,13 @@ togglePersonsHandler = () => {
         />
         {persons} 
       
-      </div>
+      </React.Fragment>
      
     );
   }
 }
 
-export default App;
+export default withClass(App, classes.App);
 
 
 // // {this.state.persons[0].age} 
@@ -164,3 +165,7 @@ export default App;
 
 
 // */}
+
+// <div className={classes.App}>
+
+{/* <WithClass classes={classes.App}> antes era div */}

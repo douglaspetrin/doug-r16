@@ -41,3 +41,5 @@ export default cockpit;
 // className={classes.btnClasses} 
 // key='algo'
 // onClick={this.switchNameHandler.bind(this, 'opa')}>Click me</button>&nbsp;&nbsp;
+
+// </React.Fragment> is builtin and do the same as <Aux> we just created
