@@ -22,7 +22,7 @@ const cockpit = (props) => {
 
     
     return (
-        <Aux>
+        <React.Fragment>
         <h1>Hello</h1>
         <p className={assignedClasses.join(' ')}>This is really working!</p> 
     
@@ -32,7 +32,7 @@ const cockpit = (props) => {
         className={btnClasses} 
         
         onClick={props.clicked}> Click to toggle</button>
-        </Aux>
+        </React.Fragment>
     );
 };
 
