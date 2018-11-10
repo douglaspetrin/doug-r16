@@ -1,14 +1,14 @@
 import React from 'react';
 import classes from './Cockpit.module.css';
-
+import Aux from '../../hoc/Auxiliary';
 
 const cockpit = (props) => {
 
     const assignedClasses = [];
-    let btnClasses = ' '; //starts like null
+    let btnClasses = classes.Button;
     
     if (props.showPersons) {
-        btnClasses = classes.Red;  
+        btnClasses = [classes.Button, classes.Red].join(' ');
     }
     
 
@@ -16,13 +16,13 @@ const cockpit = (props) => {
       assignedClasses.push( classes.red ); // turns it red an it is using module classes
     }
 
-    if (props.persons.length<= 1) {
+    if (props.persons.length <= 1) {
       assignedClasses.push( classes.bold );
     }
 
     
     return (
-        <div className={classes.Cockpit}>
+        <Aux>
         <h1>Hello</h1>
         <p className={assignedClasses.join(' ')}>This is really working!</p> 
     
@@ -32,7 +32,7 @@ const cockpit = (props) => {
         className={btnClasses} 
         
         onClick={props.clicked}> Click to toggle</button>
-        </div>
+        </Aux>
     );
 };
 
