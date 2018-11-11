@@ -6,6 +6,8 @@ import classes from './App.module.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 import withClass from '../hoc/withClass';
+import PropTypes from 'prop-types';
+import Person from '../components/Persons/Person/Person';
 
 
 class App extends Component {
@@ -15,7 +17,8 @@ class App extends Component {
         { id: '2', name: 'Carol', age: 32 },
         { id: '3', name: 'Laise', age: 26 }
       ],
-      showPersons: false
+      showPersons: false,
+      toggleClicked: 0
   }
   
 switchNameHandler = (newName) => {
@@ -61,11 +64,14 @@ deletePersonHandler = (personIndex) => {
 
 togglePersonsHandler = () => {
     const doesShow = this.state.showPersons;
-  this.setState({
-      showPersons: !doesShow
+    this.setState( ( prevState, props) => {
+    return {
+      showPersons: !doesShow,
+      toggleClicked: prevState.toggleClicked + 1 // it counts how many clicks we do
+    }
+      
   });
 }
-
   
   render() {
 
@@ -98,6 +104,15 @@ togglePersonsHandler = () => {
     );
   }
 }
+
+// validation with PropTypes
+
+Person.propTypes = {
+  name: PropTypes.string,
+  age: PropTypes.number,
+  clicked: PropTypes.func,
+  changed: PropTypes.func
+};
 
 export default withClass(App, classes.App);
 
