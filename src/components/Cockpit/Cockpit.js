@@ -32,6 +32,7 @@ const cockpit = (props) => {
         className={btnClasses} 
         
         onClick={props.clicked}> Click to toggle</button>
+        <button onClick={props.login}>Log in</button>
         </React.Fragment>
     );
 };

@@ -10,6 +10,8 @@ import PropTypes from 'prop-types';
 import Person from '../components/Persons/Person/Person';
 
 
+const AuthContext = React.createContext(false);
+
 class App extends Component {
     state = {
       persons: [
@@ -18,8 +20,13 @@ class App extends Component {
         { id: '3', name: 'Laise', age: 26 }
       ],
       showPersons: false,
-      toggleClicked: 0
+      toggleClicked: 0,
+      authenticated: false
   }
+
+loginHandler = () => {
+  this.setState({ authenticated: true})
+}
   
 switchNameHandler = (newName) => {
        this.setState( {
@@ -74,15 +81,15 @@ togglePersonsHandler = () => {
 }
   
   render() {
-
     let persons = null; //starts with it
     
-
     if(this.state.showPersons) { // if it's true show me persons
       persons =  <Persons 
             persons={this.state.persons} //they are going to the Persons.js
             clicked={this.deletePersonHandler}
-            changed={this.nameChangeHandler}/>;
+            changed={this.nameChangeHandler}
+            isAuthenticated={this.state.authenticated}
+            />;
     }
 
     // let classes = ['red', 'bold'].join(' ') // equals to red bold
@@ -96,9 +103,11 @@ togglePersonsHandler = () => {
           showPersons={this.state.showPersons}
           persons={this.state.persons}
           clicked={this.togglePersonsHandler}
+          login={this.loginHandler}
         />
+        <AuthContext.Provider value={this.state.authenticated}>
         {persons} 
-      
+        </AuthContext.Provider>
       </React.Fragment>
      
     );
