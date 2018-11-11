@@ -5,12 +5,12 @@ import classes from './App.module.css';
 //import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
-import withClass from '../hoc/withClass';
+import withClass from '../hoc/WithClass';
 import PropTypes from 'prop-types';
 import Person from '../components/Persons/Person/Person';
 
 
-const AuthContext = React.createContext(false);
+export const AuthContext = React.createContext(false);
 
 class App extends Component {
     state = {
@@ -25,7 +25,7 @@ class App extends Component {
   }
 
 loginHandler = () => {
-  this.setState({ authenticated: true})
+  this.setState({ authenticated: true});
 }
   
 switchNameHandler = (newName) => {
@@ -99,6 +99,7 @@ togglePersonsHandler = () => {
       
       
       <React.Fragment>
+        <button onClick={() => { this.setState( { showPersons: true } ) }}>Show Persons</button>
         <Cockpit
           showPersons={this.state.showPersons}
           persons={this.state.persons}
@@ -106,7 +107,7 @@ togglePersonsHandler = () => {
           login={this.loginHandler}
         />
         <AuthContext.Provider value={this.state.authenticated}>
-        {persons} 
+        {persons}
         </AuthContext.Provider>
       </React.Fragment>
      
@@ -114,14 +115,8 @@ togglePersonsHandler = () => {
   }
 }
 
-// validation with PropTypes for dev not production
 
-Person.propTypes = {
-  name: PropTypes.string,
-  age: PropTypes.number,
-  clicked: PropTypes.func,
-  changed: PropTypes.func
-};
+
 
 export default withClass(App, classes.App);
 

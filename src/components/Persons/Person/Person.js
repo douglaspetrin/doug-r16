@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 
 import './Person.css';
 import classes from './Person.module.css';
-import withClass from '../../../hoc/withClass';
+import withClass from '../../../hoc/WithClass';
+import AuthContext from '../../../containers/App';
 
 
 class Person extends Component {
@@ -18,7 +19,7 @@ class Person extends Component {
        }
     }
 
-    focus(){
+    focus() {
         this.inputElement.current.focus();
     }
 
@@ -26,9 +27,19 @@ class Person extends Component {
             return (
                 
                 <React.Fragment>
-                    {this.props.authenticated ? <p>I am authenticated</p> : null}
-                    <p onClick={this.props.click}>I'm {this.props.name} and I am {this.props.age}</p>
+
+                    {this.props.authenticated ? <p>I'm authenticated!</p> : null}
+
+                    {/* <AuthContext.Consumer>
+                    {auth => auth ? <p>I am authenticated</p> : null}
+                    </AuthContext.Consumer> */}
+
+                    <p onClick={this.props.click}>
+                    
+                    I'm {this.props.name} and I am {this.props.age}</p>
+                    
                     <p>{this.props.children}</p>
+                    
                     <input  
                         ref={ this.inputElement }
                         type="text"
@@ -41,8 +52,16 @@ class Person extends Component {
 
     }
 
+    // validation with PropTypes for dev not production
 
-export default withClass(Person, classes.Person);
+Person.propTypes = {
+    click: PropTypes.func,
+    name: PropTypes.string,
+    age: PropTypes.number,
+    changed: PropTypes.func
+};
+
+export default withClass( Person, classes.Person );
 
 // const person = (props) => {
 
