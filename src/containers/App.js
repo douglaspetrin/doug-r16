@@ -13,7 +13,10 @@ import Person from '../components/Persons/Person/Person';
 export const AuthContext = React.createContext(false);
 
 class App extends Component {
-    state = {
+  constructor(props){
+    super(props);
+  
+    this.state = {
       persons: [
         { id: '1', name: 'Doug', age: 28 },
         { id: '2', name: 'Carol', age: 32 },
@@ -23,6 +26,8 @@ class App extends Component {
       toggleClicked: 0,
       authenticated: false
   }
+  }
+
 
 loginHandler = () => {
   this.setState({ authenticated: true});
@@ -88,7 +93,7 @@ togglePersonsHandler = () => {
             persons={this.state.persons} //they are going to the Persons.js
             clicked={this.deletePersonHandler}
             changed={this.nameChangeHandler}
-            isAuthenticated={this.state.authenticated}
+            // isAuthenticated={this.state.authenticated}
             />;
     }
 
