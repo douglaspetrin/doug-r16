@@ -105,7 +105,7 @@ togglePersonsHandler = () => {
   }
 }
 
-// validation with PropTypes
+// validation with PropTypes for dev not production
 
 Person.propTypes = {
   name: PropTypes.string,

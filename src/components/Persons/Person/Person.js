@@ -12,10 +12,20 @@ class Person extends Component {
         
                     <p onClick={this.props.click}>I'm {this.props.name} and I am {this.props.age}</p>
                     <p>{this.props.children}</p>
-                    <input type="text" onChange={this.props.changed} placeholder={this.props.name}></input>
+                    <input  
+                        ref={ (inp) => { this.inputElement = inp }} //inputElement is just a name
+                        type="text"
+                        onChange={this.props.changed} 
+                        placeholder={this.props.name}>
+                    </input>
         
                     </React.Fragment>
             )
+        }
+        componentDidMount() {
+            if (this.props.position === 0) {
+                this.inputElement.focus();
+            }
         }
     }
 
