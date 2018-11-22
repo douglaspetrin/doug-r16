@@ -1,6 +1,5 @@
 import React from 'react';
 import classes from './Cockpit.module.css';
-import Aux from '../../hoc/Auxiliary';
 
 const cockpit = (props) => {
 
@@ -37,7 +36,9 @@ const cockpit = (props) => {
     );
 };
 
-export default cockpit;
+export default React.memo(cockpit);
+
+
 
 // className={classes.btnClasses} 
 // key='algo'

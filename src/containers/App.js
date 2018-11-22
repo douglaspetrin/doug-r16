@@ -8,6 +8,10 @@ import Cockpit from '../components/Cockpit/Cockpit';
 import withClass from '../hoc/WithClass';
 import PropTypes from 'prop-types';
 import Person from '../components/Persons/Person/Person';
+import CryptList from '../components/Cryptos/Binance/CryptoList';
+import WebSocket from '../components/Cryptos/Binance/WebSocket';
+import ProductDetail from '../components/Cryptos/Binance/WS';
+import NewsApi from '../components/NewsApi/NewsApi';
 
 
 export const AuthContext = React.createContext(false);
@@ -114,13 +118,14 @@ togglePersonsHandler = () => {
         <AuthContext.Provider value={this.state.authenticated}>
         {persons}
         </AuthContext.Provider>
+        <CryptList />
+        <NewsApi />
       </React.Fragment>
+      
      
     );
   }
 }
-
-
 
 
 export default withClass(App, classes.App);
